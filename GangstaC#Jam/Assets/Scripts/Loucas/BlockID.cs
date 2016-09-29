@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BlockID : MonoBehaviour {
 
-	protected int blockID;
+	public int blockID;
 
 	// Use this for initialization
 	void Start () {
@@ -13,5 +13,13 @@ public class BlockID : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void SetBlockID(int newID) {
+		blockID = newID;
+	}
+
+	public int GetBlockID() {
+		return blockID;
 	}
 }

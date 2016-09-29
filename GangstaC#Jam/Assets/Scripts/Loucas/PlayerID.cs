@@ -18,4 +18,8 @@ public class PlayerID : MonoBehaviour {
 	public void SetPlayerID(int newID) {
 		playerID = newID;
 	}
+
+	public int GetPlayerID() {
+		return playerID;
+	}
 }
