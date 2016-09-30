@@ -43,8 +43,8 @@ public class PlayerControls : MonoBehaviour {
 				}
 				if (Input.GetKeyDown(KeyCode.UpArrow)) {
 					print("Pressed Down Arrow Button");
-					currentShape.transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentRot);
-					currentRot += 90.0f;
+					Transform rotPoint = currentShape.gameObject.transform.FindChild("RotatePoint");
+					currentShape.transform.RotateAround(rotPoint.transform.position, Vector3.forward, currentRot);
 				}
 			}
 			if (playerID == 1) {
@@ -62,8 +62,8 @@ public class PlayerControls : MonoBehaviour {
 				}
 				if (Input.GetKeyDown(KeyCode.W)) {
 					print("Pressed W Button");
-					currentShape.transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentRot);
-					currentRot += 90.0f;
+					Transform rotPoint = currentShape.gameObject.transform.FindChild("RotatePoint");
+					currentShape.transform.RotateAround(rotPoint.transform.position, Vector3.forward, currentRot);
 				}
 			}
 			if (playerID == 2) {
@@ -81,8 +81,8 @@ public class PlayerControls : MonoBehaviour {
 				}
 				if (Input.GetKeyDown(KeyCode.I)) {
 					print("Pressed I Button");
-					currentShape.transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentRot);
-					currentRot += 90.0f;
+					Transform rotPoint = currentShape.gameObject.transform.FindChild("RotatePoint");
+					currentShape.transform.RotateAround(rotPoint.transform.position, Vector3.forward, currentRot);
 				}
 			}
 			if (playerID == 3) {
@@ -100,9 +100,8 @@ public class PlayerControls : MonoBehaviour {
 				}
 				if (Input.GetKeyDown(KeyCode.Keypad8)) {
 					print("Pressed Keypad 8 Button");
-					currentShape.transform.rotation = Quaternion.Euler(0.0f, 0.0f, currentRot);
-					//currentShape.transform.RotateAround
-					currentRot += 90.0f;
+					Transform rotPoint = currentShape.gameObject.transform.FindChild("RotatePoint");
+					currentShape.transform.RotateAround(rotPoint.transform.position, Vector3.forward, currentRot);
 				}
 			}
 
