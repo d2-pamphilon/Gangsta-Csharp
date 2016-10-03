@@ -9,21 +9,26 @@ public class Score : MonoBehaviour {
 	public Text highScoreTxt;
 	public int m_score;
 	private int m_highScore;
-	private AIJumpScript m_death;
+	private bool m_death;
 	private Data data;
-	public bool death;
+
+
+	[SerializeField] GameObject aiJump;
 
 	// Use this for initialization
 	void Start () {
+		m_death = aiJump.GetComponent<AIJumpScript>().m_dead;
 		
-		death = m_death.m_dead; //store the dead bool into this variable
-		Debug.Log ("start");
+		//death = m_death.m_dead; //store the dead bool into this variable
+
+
 
 		m_score = 0; //set score to 0 then update
 		UpdateScore ();
 
 		m_highScore = (int)Data.instance.GetHighScore ();
 		UpdateHighScore ();
+		Debug.Log (m_highScore);
 
 		//get player score
 	}
@@ -31,8 +36,9 @@ public class Score : MonoBehaviour {
 
 	void Update()
 	{
+		Debug.Log (m_highScore);
         //If not dead
-		if (death == false) {
+		if (m_death == false) {
 			m_score = (int)Time.timeSinceLevelLoad; // set score as the time
 			//m_score = (int)Time.realtimeSinceStartup;
 
