@@ -4,7 +4,7 @@ using System.Collections;
 public class BlockID : MonoBehaviour {
 
 	public int blockID;
-	public Sprite blockSprite;
+	public Sprite[] blockSprite;
 	private bool spriteSet;
 
 	// Use this for initialization
@@ -15,7 +15,7 @@ public class BlockID : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!spriteSet) {
-			SetSprite(blockSprite);
+			SetSprite(blockSprite[blockID-1]);
 		}
 	}
 
