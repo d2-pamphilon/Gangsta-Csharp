@@ -4,7 +4,7 @@ using System.Collections;
 public class AIJumpScript : MonoBehaviour
 {
     //he dead?
-    private bool m_dead = false;
+    public bool m_dead = false;
     //he on da ground?
     public bool m_onGround = false;
 
@@ -71,6 +71,5 @@ public class AIJumpScript : MonoBehaviour
             Debug.Log("No rigidbody??");
         }
     }
-
 
 }
