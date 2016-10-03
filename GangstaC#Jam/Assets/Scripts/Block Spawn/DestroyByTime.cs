@@ -4,14 +4,14 @@ using System.Collections;
 public class DestroyByTime : MonoBehaviour {
 
     public float lifetime = 10f;
-    public Rigidbody rb;
+    public Rigidbody2D rb;
     private bool collided;
 
 	// Use this for initialization
 	void Start () {
 
         Destroy(gameObject, lifetime);
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void OnTriggerEnter(Collider other)
