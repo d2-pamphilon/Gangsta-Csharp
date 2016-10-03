@@ -41,4 +41,11 @@ public class Data : MonoBehaviour {
         else
             return 0.0f;
     }
+	public void ClearHighScore()
+	{
+		if (PlayerPrefs.HasKey (str))
+		{
+			PlayerPrefs.SetFloat (str,0.0f);
+		}
+	}
 }

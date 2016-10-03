@@ -22,7 +22,7 @@ public class Score : MonoBehaviour {
 		m_score = 0; //set score to 0 then update
 		UpdateScore ();
 
-		m_highScore = 0;//data.Instantiate;
+		m_highScore = (int)Data.instance.GetHighScore ();
 		UpdateHighScore ();
 
 		//get player score
@@ -44,7 +44,9 @@ public class Score : MonoBehaviour {
 				UpdateHighScore ();
 				Debug.Log (m_highScore);
 			}
-		} 
+		} else {
+			Data.instance.SetHighScore (m_highScore);
+		}
 	}
 
 
@@ -61,6 +63,16 @@ public class Score : MonoBehaviour {
 	}
 	void UpdateHighScore()
 	{
-		highScoreTxt.text = "High Score: " + m_highScore;
+		if (m_highScore >= Data.instance.GetHighScore ()) {
+			highScoreTxt.text = "High Score: " + m_highScore;
+		} 
+		else {
+			highScoreTxt.text = "High Score: " + Data.instance.GetHighScore ();
+		}
+			
+	}
+	void OnApplicationQuit()
+	{
+		Data.instance.SetHighScore (m_highScore);
 	}
 }
