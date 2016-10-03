@@ -33,8 +33,8 @@ public class Score : MonoBehaviour {
 	{
         //If not dead
 		if (death == false) {
-			//m_score = (int)Time.timeSinceLevelLoad; // set score as the time
-			m_score = (int)Time.realtimeSinceStartup;
+			m_score = (int)Time.timeSinceLevelLoad; // set score as the time
+			//m_score = (int)Time.realtimeSinceStartup;
 
 			UpdateScore ();
 
