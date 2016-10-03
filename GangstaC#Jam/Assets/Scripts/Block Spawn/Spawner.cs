@@ -9,10 +9,12 @@ public class Spawner : MonoBehaviour {
     public Transform[] spawnPoints;
     public int blockCount = 64;             // Amount of usable blocks
     public float spawnTime = 3f;            // How long between each spawn
+    public GameObject currentBlock;
+    GameObject tempBlock;
 
     // Use this for initialization
-    void Start () {
-
+    void Start ()
+    {
         StartCoroutine(Spawn());
     }
 
@@ -20,12 +22,16 @@ public class Spawner : MonoBehaviour {
     {
         for (int i = 0; i < blockCount; i++)
         {
+
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-            GameObject tempBlock = (GameObject)Instantiate(blockPrefab[Random.Range(0, 6)], spawnPoints[0].position, spawnPoints[0].rotation);
-            tempBlock.GetComponent<Rigidbody2D>().isKinematic = false;
-			Instantiate(nextBlockPrefab[Random.Range(0, 6)], spawnPoints[1].position, spawnPoints[0].rotation);
+            tempBlock = (GameObject)Instantiate(blockPrefab[Random.Range(0, 6)], spawnPoints[1].position, spawnPoints[0].rotation);
+            tempBlock.GetComponent<Rigidbody2D>().isKinematic = true;
             yield return new WaitForSeconds(spawnTime);
+
+            currentBlock = tempBlock;
+            currentBlock.transform.position = spawnPoints[0].position;
+            currentBlock.GetComponent<Rigidbody2D>().isKinematic = false;
+
         }
- 
     }
 }
