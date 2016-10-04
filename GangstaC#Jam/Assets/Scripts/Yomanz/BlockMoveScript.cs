@@ -30,6 +30,8 @@ public class BlockMoveScript : MonoBehaviour {
             gameObject.tag = "Terrain";
             hasInitiallyCollided = true;
             placed = true;
+            ScreenShake.instance.Shake();
+
         }
     }
 

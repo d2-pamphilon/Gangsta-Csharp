@@ -117,8 +117,10 @@ public class AIJumpScript : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-    	if (other.tag == "Kill"){
+    	if (other.tag == "Kill" && !m_dead){
     		m_dead = true;
+            ExplosionManager.instance.Call(transform.position);
+            ScreenShake.instance.Shake();
     		//Destroy(gameObject, 5.0f);
     	}
     	if (other.tag == "JumpBox") {
