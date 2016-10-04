@@ -24,14 +24,20 @@ public class AIJumpScript : MonoBehaviour
         Vector2 rayPos = transform.position;
         BoxCollider2D hitbox = GetComponent<BoxCollider2D>();
         RaycastHit2D[] rayHits;
-        rayHits = Physics2D.RaycastAll(rayPos, -Vector2.up, 1.0f);
+        rayHits = Physics2D.RaycastAll(rayPos, -Vector2.up, 0.6f);
+        bool hitDaGround = false;
         foreach(RaycastHit2D hit in rayHits)
         {
             if (hit.collider.tag == "Terrain")
             {
                 m_onGround = true;
+                hitDaGround = true;
                 break;
             }
+        }
+        if(!hitDaGround)
+        {
+            m_onGround = false;
         }
     }
 
@@ -49,7 +55,7 @@ public class AIJumpScript : MonoBehaviour
         if (rayResult.collider != null)
         {
             //if he on da ground
-            if(m_onGround)
+            if(m_onGround && rayResult.collider.tag == "Terrain")
             {
                 Jump();
             }
@@ -63,7 +69,9 @@ public class AIJumpScript : MonoBehaviour
         if (physics != null)
         {
             //push up lad
-            physics.AddForce(new Vector2(0, m_jumpPower));
+            Vector2 vel = physics.velocity;
+            vel.y = m_jumpPower;
+            physics.velocity = vel;
             m_onGround = false;
         }
         else

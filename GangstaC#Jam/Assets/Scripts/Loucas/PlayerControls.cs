@@ -41,11 +41,11 @@ public class PlayerControls : MonoBehaviour {
 					currentShape.transform.position += new Vector3(moveDistance, 0.0f, 0.0f);
 				}
 				if (Input.GetKey(KeyCode.DownArrow)) {
-					print("Pressed Down Arrow Button");
+                    print("Pressed Down Arrow Button");
 					currentShape.transform.position += new Vector3(0.0f, -0.1f, 0.0f) * (Time.deltaTime * moveSpeed);
 				}
 				if (Input.GetKeyDown(KeyCode.UpArrow)) {
-					print("Pressed Down Arrow Button");
+					print("Pressed Up Arrow Button");
 					Transform rotPoint = currentShape.gameObject.transform.FindChild("RotatePoint");
 					currentShape.transform.RotateAround(rotPoint.transform.position, Vector3.forward, currentRot);
 				}
@@ -109,10 +109,6 @@ public class PlayerControls : MonoBehaviour {
 			}
 
 		}
-	}
-
-	public void setCurrentShape() {
-		currentShape = null;
 	}
 
 	public void setCanMoveBlock(bool newBoolValue) {
