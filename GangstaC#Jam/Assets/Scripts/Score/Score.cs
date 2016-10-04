@@ -8,6 +8,7 @@ public class Score : MonoBehaviour {
 	public Text scoreTxt;
 	public Text highScoreTxt;
 	public int m_score;
+	public float timeAlive;
 	private int m_highScore;
 	private AIJumpScript m_death;
 	private Data data;
@@ -17,7 +18,7 @@ public class Score : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        m_death = runner.GetComponent<AIJumpScript>();
+		m_death = runner.GetComponent<AIJumpScript>();
 		death = m_death.m_dead; //store the dead bool into this variable
 		//Debug.Log ("start");
 
@@ -33,11 +34,13 @@ public class Score : MonoBehaviour {
 
 	void Update()
 	{
-        //If not dead
-		if (!death) {
-			m_score = (int)Time.timeSinceLevelLoad; // set score as the time
-			//m_score = (int)Time.realtimeSinceStartup;
 
+
+        //If not dead
+		if (!m_death.m_dead) {
+			timeAlive += Time.deltaTime; // set score as the time
+			//m_score = (int)Time.realtimeSinceStartup;
+			m_score = (int)timeAlive;
 			UpdateScore ();
 
 			//if the score is greater or equal to the high score then update the highscore
