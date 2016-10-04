@@ -47,6 +47,7 @@ public class SpawnerScript : MonoBehaviour {
         }
     }
 
+
     void Spawn()
     {
         currentBlock = upcomingBlock;
