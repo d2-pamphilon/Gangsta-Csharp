@@ -9,7 +9,7 @@ public class PlatformMover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		targetPos = new Vector3(-12.0f, transform.position.y, transform.position.z);
+		targetPos = new Vector3(-15.0f, transform.position.y, transform.position.z);
 	}
 	
 	// Update is called once per frame

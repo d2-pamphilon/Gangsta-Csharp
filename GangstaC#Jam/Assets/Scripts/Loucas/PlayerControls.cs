@@ -3,30 +3,33 @@ using System.Collections;
 
 public class PlayerControls : MonoBehaviour {
 
-	private GameObject currentShape;
+	public GameObject currentShape, spawner;
 	private GameObject[] shapesSpawned;
 	public float moveSpeed, moveDistance;
 	private float currentRot;
 	private int playerID;
+	private bool canMoveBlock;
 
 	// Use this for initialization
 	void Start () {
 		currentRot = 90.0f;
 		playerID = GetComponent<PlayerID>().GetPlayerID();
+		canMoveBlock = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (currentShape == null) {
-			shapesSpawned = GameObject.FindGameObjectsWithTag("CurrentShape");
+		//if (currentShape == null) {
+			/*shapesSpawned = GameObject.FindGameObjectsWithTag("CurrentShape");
 			for (int i = 0; i < shapesSpawned.Length; i++) {
 				int tempBlockID = shapesSpawned[i].GetComponent<BlockID>().GetBlockID();
 				if (tempBlockID == playerID) {
 					currentShape = shapesSpawned[i].gameObject;
 				}
-			}
+			}*/
+			//currentShape = spawner.GetComponent<Spawner>().currentBlock.gameObject;
 			//currentShape = GameObject.FindGameObjectWithTag("CurrentShape");
-		}
+		//}
 		if (currentShape != null) {
 			if (playerID == 0) {
 				if (Input.GetKeyDown(KeyCode.LeftArrow)) {
@@ -106,5 +109,17 @@ public class PlayerControls : MonoBehaviour {
 			}
 
 		}
+	}
+
+	public void setCurrentShape() {
+		currentShape = null;
+	}
+
+	public void setCanMoveBlock(bool newBoolValue) {
+		canMoveBlock = newBoolValue;
+	}
+
+	public GameObject getCurrentShape() {
+		return currentShape;
 	}
 }

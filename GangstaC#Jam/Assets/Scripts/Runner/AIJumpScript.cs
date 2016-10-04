@@ -4,7 +4,7 @@ using System.Collections;
 public class AIJumpScript : MonoBehaviour
 {
     //he dead?
-    public bool m_dead = false;
+    public bool m_dead;
     //he on da ground?
     public bool m_onGround = false;
 
@@ -16,7 +16,7 @@ public class AIJumpScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+    	m_dead = false;
     }
 
     void Update()
@@ -71,5 +71,31 @@ public class AIJumpScript : MonoBehaviour
             Debug.Log("No rigidbody??");
         }
     }
+	void OnCollisionEnter2D(Collision2D other) {
+    	if (other.gameObject.tag == "Terrain") {
+    		print("On platform");
+    	}
+    }
 
+    void OnCollisionExit2D(Collision2D other) {
+    	if (other.gameObject.tag == "Terrain") {
+    		print("Jumping off platform");
+			Rigidbody2D physics = GetComponent<Rigidbody2D>();
+			physics.AddForce(new Vector2(0, m_jumpPower));
+            m_onGround = false;
+    	}
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+    	if (other.tag == "Kill"){
+    		m_dead = true;
+    		//Destroy(gameObject, 5.0f);
+    	}
+    	if (other.tag == "JumpBox") {
+			print("Jumping off platform");
+			Rigidbody2D physics = GetComponent<Rigidbody2D>();
+			physics.AddForce(new Vector2(0, m_jumpPower));
+            m_onGround = false;
+    	}
+    }
 }

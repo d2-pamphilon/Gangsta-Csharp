@@ -17,7 +17,7 @@ public class Score : MonoBehaviour {
 	void Start () {
 		
 		death = m_death.m_dead; //store the dead bool into this variable
-		Debug.Log ("start");
+		//Debug.Log ("start");
 
 		m_score = 0; //set score to 0 then update
 		UpdateScore ();
@@ -42,7 +42,7 @@ public class Score : MonoBehaviour {
 			if (m_score >= m_highScore) {
 				m_highScore = m_score;	
 				UpdateHighScore ();
-				Debug.Log (m_highScore);
+				//Debug.Log (m_highScore);
 			}
 		} else {
 			Data.instance.SetHighScore (m_highScore);
