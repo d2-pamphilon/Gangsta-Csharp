@@ -5,7 +5,7 @@ public class SpawnerScript : MonoBehaviour {
 
     public GameObject[] blockPrefab;
     public Transform[] spawnPoints;
-    public float spawnTime = 3f;            // How long between each spawn
+    public float spawnTime = 3.0f;            // How long between each spawn
     private GameObject currentBlock;
     GameObject upcomingBlock;
     public GameObject player, runner;
@@ -51,8 +51,9 @@ public class SpawnerScript : MonoBehaviour {
     {
         currentBlock = upcomingBlock;
         currentBlock.transform.position = spawnPoints[0].position;
+        print("1 - " + currentBlock.transform.position);
         currentBlock.GetComponent<Rigidbody2D>().isKinematic = false;
-        currentBlock.GetComponent<BoxCollider2D>().enabled = true;
+        currentBlock.GetComponent<Collider2D>().enabled = true;
         SpawnUpcomingBlock();
         player.GetComponent<PlayerControls>().currentShape = currentBlock.gameObject;
     }
@@ -60,7 +61,8 @@ public class SpawnerScript : MonoBehaviour {
     private void SpawnUpcomingBlock()
     {
         upcomingBlock = (GameObject)Instantiate(blockPrefab[Random.Range(0, 6)], spawnPoints[1].position, spawnPoints[0].rotation);
+        print("2 - " + upcomingBlock.transform.position);
         upcomingBlock.GetComponent<Rigidbody2D>().isKinematic = true;
-        upcomingBlock.GetComponent<BoxCollider2D>().enabled = false;
+        upcomingBlock.GetComponent<Collider2D>().enabled = false;
     }
 }
