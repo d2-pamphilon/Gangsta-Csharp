@@ -5,7 +5,7 @@ public class PlayerControls : MonoBehaviour {
 
 	public GameObject currentShape, spawner;
 	private GameObject[] shapesSpawned;
-	public float moveSpeed, moveDistance;
+	public float moveSpeed, moveDistance, higherSpeed;
 	private float currentRot;
 	private int playerID;
 	private bool canMoveBlock;
@@ -42,7 +42,7 @@ public class PlayerControls : MonoBehaviour {
 				}
 				if (Input.GetKey(KeyCode.DownArrow)) {
                     print("Pressed Down Arrow Button");
-					currentShape.transform.position += new Vector3(0.0f, -0.1f, 0.0f) * (Time.deltaTime * moveSpeed);
+					currentShape.transform.position += new Vector3(0.0f, -0.1f, 0.0f) * (Time.deltaTime * higherSpeed);
 				}
 				if (Input.GetKeyDown(KeyCode.UpArrow)) {
 					print("Pressed Up Arrow Button");

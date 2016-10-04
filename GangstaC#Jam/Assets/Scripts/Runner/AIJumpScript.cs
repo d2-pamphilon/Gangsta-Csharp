@@ -43,19 +43,41 @@ public class AIJumpScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 rayPos = transform.position;
         BoxCollider2D hitbox = GetComponent<BoxCollider2D>();
-        if (hitbox != null)
+        if (m_onGround)
         {
-            //set ray pos to start just outside of the hitbox
-            rayPos.x += GetComponent<BoxCollider2D>().size.x / 2.0f + 0.1f;
+            //Check in front for blocks + jump if there's something there
+            Vector2 rayPos = transform.position;
+
+            if (hitbox != null)
+            {
+                //set ray pos to start just outside of the hitbox
+                rayPos.x += hitbox.size.x / 2.0f + 0.05f;
+            }
+            rayPos.y += hitbox.size.y / 2.0f - 0.05f;
+            for (int i = 0; i < 3; i++)
+            {
+                RaycastHit2D rayResult = Physics2D.Raycast(rayPos, new Vector2(1, 0), m_visionRange);
+                //if there was collision
+                if (rayResult.collider != null)
+                {
+                    //if he on da ground
+                    if (m_onGround && rayResult.collider.tag == "Terrain")
+                    {
+                        Jump();
+                        break;
+                    }
+                }
+                rayPos.y -= (hitbox.size.y / 2.0f - 0.1f);
+            }
         }
-        RaycastHit2D rayResult = Physics2D.Raycast(rayPos, new Vector2(1, 0), m_visionRange);
-        //if there was collision
-        if (rayResult.collider != null)
+        if(m_onGround)
         {
-            //if he on da ground
-            if(m_onGround && rayResult.collider.tag == "Terrain")
+            Vector2 potentialGapPos = transform.position;
+            potentialGapPos.x += (hitbox.size.x/2 + 0.5f);
+            potentialGapPos.y -= (hitbox.size.y/2 + 0.5f);
+            Collider2D coll = Physics2D.OverlapPoint(potentialGapPos);
+            if(coll == null)
             {
                 Jump();
             }
